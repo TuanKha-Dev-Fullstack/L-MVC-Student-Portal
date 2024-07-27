@@ -1,6 +1,7 @@
 using L_MVC_Student_Portal.Data;
 using L_MVC_Student_Portal.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace L_MVC_Student_Portal.Controllers
 {
@@ -27,6 +28,14 @@ namespace L_MVC_Student_Portal.Controllers
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
             return View();
+        }
+        
+        // GET: StudentController
+        [HttpGet]
+        public async Task<ActionResult> ListStudents()
+        {
+            var students = await _context.Students.ToListAsync();
+            return View(students);
         }
     }
 }
