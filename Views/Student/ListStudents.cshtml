@@ -9,24 +9,33 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th></th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var student in Model)
-        {
-            <tr>
-                <td>@student.Id</td>
-                <td>@student.Name</td>
-                <td>@student.Email</td>
-                <td>@student.Phone</td>
-                <td><a class="btn btn-primary" asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id">Edit</a></td>
-            </tr>
-        }
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td>@student.Id</td>
+            <td>@student.Name</td>
+            <td>@student.Email</td>
+            <td>@student.Phone</td>
+            <td>
+                <a class="btn btn-primary" asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+
+            </td>
+            <td>
+                <form method="post" asp-controller="Student" asp-action="Delete" asp-route-id="@student.Id">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>

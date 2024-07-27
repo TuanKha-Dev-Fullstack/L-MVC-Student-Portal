@@ -60,5 +60,15 @@ namespace L_MVC_Student_Portal.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("ListStudents", "Student");
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var student = await _context.Students.FindAsync(id);
+            if (student is null) return RedirectToAction("ListStudents", "Student");
+            _context.Students.Remove(student);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("ListStudents", "Student");
+        }
     }
 }
