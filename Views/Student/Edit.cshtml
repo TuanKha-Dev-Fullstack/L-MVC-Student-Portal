@@ -1,0 +1,43 @@
+@{
+}
+@model L_MVC_Student_Portal.Models.Entities.Student
+
+<h1>Edit student</h1>
+
+@if (false)
+{
+    <div>No student was not found with this id</div>
+}
+else
+{
+    <form method="post">
+        <div class="mt-3">
+            <label class="form-label">Id</label>
+            <input type="text" class="form-control" asp-for="Id" readonly/>
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" asp-for="Name"/>
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control" asp-for="Email"/>
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" asp-for="Phone"/>
+        </div>
+
+        <div class="mt-3">
+            <input type="checkbox" class="form-check-input" id="subscribed" asp-for="Subscribed"/>
+            <label class="form-label" for="subscribed">Subscribed</label>
+        </div>
+
+        <div class="mt-3">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+}
