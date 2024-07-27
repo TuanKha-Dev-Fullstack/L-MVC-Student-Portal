@@ -27,7 +27,7 @@ namespace L_MVC_Student_Portal.Controllers
             };
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
-            return View();
+            return RedirectToAction("ListStudents", "Student");
         }
         
         // GET: StudentController
@@ -36,6 +36,29 @@ namespace L_MVC_Student_Portal.Controllers
         {
             var students = await _context.Students.ToListAsync();
             return View(students);
+        }
+        
+        // GET: StudentController
+        [HttpGet]
+        public async Task<ActionResult> Edit(Guid id)
+        {
+            var student = await _context.Students.FindAsync(id);
+            return View(student);
+        }
+        
+        // POST: StudentController
+        [HttpPost]
+        public async Task<ActionResult> Edit(Student viewModel)
+        {
+            var student = await _context.Students.FindAsync(viewModel.Id);
+            if (student is null) return RedirectToAction("ListStudents", "Student");
+            student.Name = viewModel.Name;
+            student.Email = viewModel.Email;
+            student.Phone = viewModel.Phone;
+            student.Subscribed = viewModel.Subscribed;
+            _context.Students.Update(student);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("ListStudents", "Student");
         }
     }
 }
